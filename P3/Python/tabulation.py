@@ -3,6 +3,10 @@ import sys
 
 # Matrix Ai has dimension p[i-1] x p[i] for i = 1..n
 def MatrixChainOrder(p, n):
+
+    if len(p) < 3:
+        return 0
+
     # For simplicity of the program, one extra row and one
     # extra column are allocated in m[][].  0th row and 0th
     # column of m[][] are not used

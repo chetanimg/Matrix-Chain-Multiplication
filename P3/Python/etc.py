@@ -7,7 +7,7 @@ import time
 """
 
 
-def ProcesaArgumentos(flagT, flagF, flagDi, flagDo):
+def ProcesaArgumentos(flagT, flagF, flagDi, flagDo, flagMem, flagTab):
     # type: (int, int, int, int) -> object
 
 
@@ -23,6 +23,10 @@ def ProcesaArgumentos(flagT, flagF, flagDi, flagDo):
                         help="Muestra el contenido del input.")
     parser.add_argument("-do", action='store_true',
                         help="Muestra el contenido del output.")
+    parser.add_argument("-tab", action='store_true',
+                        help="Activa que el problema se resuelva mediante tabulation.")
+    parser.add_argument("-mem", action='store_true',
+                        help="Activa que el problema se resuelva mediante memoization.")
     # establecemos que queremos que actuen como opciones del programa
     args = parser.parse_args()
 
@@ -35,8 +39,12 @@ def ProcesaArgumentos(flagT, flagF, flagDi, flagDo):
         flagDi = 1
     if args.do:
         flagDo = 1
+    if args.tab:
+        flagTab = 1
+    if args.mem:
+        flagMem = 1
 
-    return args, flagF, flagT, flagDi, flagDo
+    return args, flagF, flagT, flagDi, flagDo, flagMem, flagTab
 
 
 """
@@ -92,11 +100,3 @@ def abrirFichero(path):
 def cerrarFichero(fichero):
     fichero.close
 
-"""
-    paraTimer => hace una segunda medida del tiempo y calcula la diferencia,
-    ademas de mostrarlo por pantalla
-"""
-
-
-def paraTimer():
-    print "Tiempo => ", time.clock(), " s"
